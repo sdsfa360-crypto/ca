@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crown City | كراون سيتي - الصفحة الرسمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #a855f7; 
+            --kick-green: #53fc18;
+            --dark-purple-bg: #1a0b2e; 
+            --deep-black: #050505;        
+            --card-bg: rgba(17, 8, 31, 0.9);        
+            --text-main: #e2e8f0;
+            --gold: #f59e0b;
+            --discord-blue: #5865F2;
+            --play-green: #10b981; /* لون زر دخول السيرفر */
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--dark-purple-bg) 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* توهج الخلفية */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 80vh;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            box-sizing: border-box;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #b4befe;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: white;
+            text-shadow: 0 0 10px var(--primary-purple);
+        }
+
+        .shop-link {
+            color: var(--gold) !important;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 5px 20px;
+            border-radius: 8px;
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .shop-link:hover {
+            background: rgba(245, 158, 11, 0.15);
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        /* تنسيق زر الديسكورد */
+        .discord-link {
+            color: var(--discord-blue) !important;
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            padding: 5px 20px;
+            border-radius: 8px;
+            background: rgba(88, 101, 242, 0.05);
+        }
+
+        .discord-link:hover {
+            background: rgba(88, 101, 242, 0.15);
+            text-shadow: 0 0 10px var(--discord-blue);
+        }
+
+        /* تنسيق زر دخول السيرفر الجديد */
+        .play-link {
+            color: var(--play-green) !important;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 5px 20px;
+            border-radius: 8px;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .play-link:hover {
+            background: rgba(16, 185, 129, 0.15);
+            text-shadow: 0 0 10px var(--play-green);
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            animation: fadeIn 0.6s ease;
+            padding-top: 120px;
+            box-sizing: border-box;
+            padding-bottom: 50px;
+            flex: 1;
+        }
+
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* الهيرو سيكشن */
+        #home-page { padding-top: 0; }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .hero h1 { 
+            font-size: 4rem; 
+            margin: 0; 
+            font-weight: 900; 
+            color: white; 
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5); 
+        }
+
+        .hero p { 
+            font-size: 1.3rem; 
+            max-width: 700px; 
+            color: #cbd5e1; 
+            margin: 20px 0 40px; 
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background: var(--primary-purple);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Tajawal';
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 15px 25px rgba(168, 85, 247, 0.4); }
+
+        .section-title { 
+            text-align: center; 
+            font-size: 2.8rem; 
+            font-weight: 900; 
+            margin-bottom: 60px; 
+            color: white; 
+            position: relative; 
+            display: table; 
+            margin: 0 auto 60px; 
+        }
+
+        .section-title::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -10px; 
+            left: 10%; 
+            width: 80%; 
+            height: 4px; 
+            background: var(--primary-purple); 
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--primary-purple);
+        }
+
+        /* الأكورديون (القوانين) */
+        .accordion-container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .accordion-item { 
+            background: var(--card-bg); 
+            margin-bottom: 15px; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: 0.3s;
+        }
+        
+        .accordion-header { 
+            width: 100%; 
+            padding: 22px 30px; 
+            background: none; 
+            border: none; 
+            color: white; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            cursor: pointer; 
+            font-family: 'Tajawal'; 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            text-align: right; 
+        }
+
+        .accordion-header-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-header-main i {
+            color: var(--primary-purple) !important;
+            font-size: 1.3rem;
+        }
+
+        .icon-plus {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .icon-plus {
+            transform: rotate(45deg);
+            color: #ef4444;
+        }
+
+        .accordion-content { max-height: 0; overflow: hidden; transition: all 0.5s ease; background: rgba(0,0,0,0.2); }
+        .accordion-item.active .accordion-content { max-height: 3000px; padding-bottom: 20px; }
+        .accordion-content ol, .accordion-content ul { padding-right: 40px; line-height: 1.8; color: #cbd5e1; }
+        
+        .warning-text { color: #ef4444; font-weight: bold; }
+
+        /* صناع المحتوى */
+        .creators-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 25px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .creator-card { 
+            background: var(--card-bg); 
+            border: 1px solid rgba(168, 85, 247, 0.2); 
+            border-radius: 20px; 
+            padding: 35px 20px; 
+            text-align: center;
+            transition: 0.3s;
+        }
+        .creator-card:hover { transform: translateY(-5px); border-color: var(--primary-purple); }
+        .creator-card h3 { margin: 0 0 20px; font-size: 1.5rem; color: white; }
+
+        .kick-badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+            background: #000; 
+            color: var(--kick-green); 
+            padding: 10px 25px; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            border: 1px solid var(--kick-green); 
+            font-weight: 900; 
+            font-size: 0.9rem;
+        }
+
+        /* تنسيق التوقيع في الأسفل */
+        .footer-signature {
+            text-align: center;
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-purple);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: auto; /* يدفعه لأسفل الصفحة */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text" style="font-weight: 900; font-size: 1.5rem; letter-spacing: 1px;">CROWN CITY</div>
+        <nav class="nav-links">
+            <a onclick="showPage('home-page')" id="link-home" class="active">الرئيسية</a>
+            <a onclick="showPage('rules-page')" id="link-rules">القوانين</a>
+            <a onclick="showPage('creators-page')" id="link-creators">صناع المحتوى</a>
+            
+            <a href="https://discord.com/invite/r-cc" target="_blank" class="discord-link">
+                <i class="fab fa-discord"></i> ديسكورد السيرفر
+            </a>
+            <a href="https://cc.thta.shop/products" target="_blank" class="shop-link">المتجر 🛒</a>
+            
+            <a href="https://cfx.re/join/893lmb" class="play-link">دخول السيرفر 🎮</a>
+        </nav>
+    </header>
+
+    <div id="home-page" class="page active">
+        <section class="hero">
+            <img src="police_logo.png" width="240" style="margin-bottom: 30px; filter: drop-shadow(0 0 20px var(--primary-purple));">
+            <h1>Crown City Roleplay</h1>
+            <p>مرحباً بكم في مجتمع كراون سيتي للرول بلاي. وجهتكم الأولى لتجربة حياة واقعية متكاملة، حيث تجتمع الإثارة بالانضباط والعدالة.</p>
+            <button class="btn-primary" onclick="showPage('rules-page')">ابدأ رحلتك الآن</button>
+        </section>
+    </div>
+
+    <div id="rules-page" class="page">
+        <h2 class="section-title">دستور المدينة</h2>
+        
+        <div class="accordion-container">
+
+            <div class="accordion-item active">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-gavel"></i> <span class="title">القوانين العامة</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <ol>
+                        <li>الاحترام المتبادل بين جميع اللاعبين داخل السيرفر.</li>
+                        <li>يمنع قتل الشخص الأعزل (بدون سلاح).</li>
+                        <li>يمنع حشر "الرسبون" (Spawn Kill).</li>
+                        <li>يمنع استخدام أي "قلتش"، ثغرة، أو هاك <span class="warning-text">(باند نهائي)</span>.</li>
+                        <li>تعدد الحسابات الشخصية ممنوع <span class="warning-text">(باند نهائي)</span>.</li>
+                        <li>تمنع الشخصنة والمضايقات بجميع أشكالها.</li>
+                        <li>يمنع ارتداء الخوذ بجميع أنواعها.</li>
+                        <li>يمنع انتحال الشخصية الإدارية بأي شكل.</li>
+                        <li>يمنع استخدام الأسماء المسيئة، المخفية، أو التوكسيك.</li>
+                        <li>يمنع برامج رفع "البنق" <span class="warning-text">(باند نهائي)</span>.</li>
+                        <li>يجب تشغيل برنامج التصوير أثناء اللعب.</li>
+                        <li>يمنع "الاسبيد بوست" في المابات غير المخصصة.</li>
+                        <li>ممنوع القتل في موقع "بوت الايفكت".</li>
+                        <li>يمنع السلوك "التوكسيك" أو الكلام المسيء.</li>
+                        <li>يمنع استخدام يد التحكم <span class="warning-text">(باند نهائي)</span>.</li>
+                        <li>يمنع افتعال أي مصدر إزعاج.</li>
+                        <li>يمنع "التخريم" (الرمي من خلف العوائق).</li>
+                        <li>يمنع القتل في منطقة "الايفكت تيست".</li>
+                        <li>يمنع وضع أسماء مسيئة أو طويلة جداً.</li>
+                        <li>يمنع ملفات تعطي أفضلية كالحاويات المخفية <span class="warning-text">(باند نهائي)</span>.</li>
+                        <li>يمنع اللعب بوضعية الوقوف بشكل متكرر.</li>
+                        <li>يمنع برامج أو ملفات تحسين الحركة (Movement).</li>
+                    </ol>
+                    <p style="color: #ffcc00; margin-top: 15px; padding-right: 30px; font-size: 0.9em;"><strong>* ملاحظة هامة: هذه القوانين قابلة للتعديل.</strong></p>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-users"></i> <span class="title">قوانين العامة و (RP)</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="rules-category">
+                        <ul style="list-style: none; padding-right: 30px; margin: 0; padding-top: 15px;">
+                            <li>❖ يجب تقمص الشخصية مع الكل؛ لا تساهل مع الأصدقاء إذا كنت عسكرياً وهو مجرم.</li>
+                            <li>❖ يمنع منعاً باتاً التحدث عن أمور خارج الرول بلاي (OOC) أو التلميح لها.</li>
+                            <li>❖ يمنع الكذب بالمصطلحات مثل {سحر، باخذ حبة، صداع} لتجنب المواقف.</li>
+                            <li>❖ يمنع الكلام المشفر بجميع أنواعه (أي كلام له أكثر من معنى ممنوع).</li>
+                            <li>❖ يمنع حرق أو تفجير الجثة أو نقلها، ويمنع إهانة اللاعب بعد قتله.</li>
+                            <li>❖ يمنع تغيير ملامح الوجه أو الشعر نهائياً بعد القيام بعملية إجرامية مباشرة.</li>
+                            <li>❖ عند الموت، يجب نسيان المتسببين بذلك (NLR) ويمنع العودة للسيناريو مرة أخرى.</li>
+                            <li>❖ يمنع الخروج من السيرفر أثناء سيناريو قائم إلا بعد مرور 10 دقائق من انتهائه <span class="warning-text">(باند نهائي)</span>.</li>
+                            <li>❖ يمنع الستريم سنايب (Stream Sniping) منعاً باتاً <span class="warning-text">(باند نهائي)</span>.</li>
+                            <li>❖ في حال حدوث "إعصار"، يجب العودة لتسليم نفسك أو إكمال السيناريو إذا كنت رهينة.</li>
+                            <li>❖ يجب تقدير قيمة مركبتك والقيادة بشكل سليم وتجنب صدم الآخرين.</li>
+                            <li>❖ الالتزام بالذوق العام في الملابس بشكل كامل.</li>
+                            <li>❖ يمنع قتل أي شخص لسبب تافه أو لأجل أمر شخصي.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="title">📋 اللوائح التنظيمية</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="rules-category" style="padding: 15px 30px 0;">
+                        <h4 style="color: var(--primary-purple); border-bottom: 1px solid rgba(168, 85, 247, 0.2); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1em;">🚗 ضوابط المركبات والقتال</h4>
+                        <ul style="list-style: none; padding-right: 0; margin: 0;">
+                            <li>❖ يجب تقدير قيمة مركبتك والقيادة بشكل سليم وتجنب صدم الآخرين.</li>
+                            <li>❖ يمنع القفز بالمركبة قفزات انتحارية أو القيادة بأسلوب غير واقعي.</li>
+                            <li>❖ في حال إزالة أربعة إطارات من المركبة، يمنع منعاً باتاً استكمال قيادتها.</li>
+                            <li>❖ يمنع حمل أي لاعب أثناء ركوب الدباب أو أي نوع من المركبات.</li>
+                            <li>❖ يجب أن يكون التهديد بشكل مباشر؛ لا يحق لك التهديد وأنت بداخل المركبة.</li>
+                            <li>❖ يمنع إطلاق النار في أي منطقة حكومية، ويمنع "التخريم" من خلف الجدران.</li>
+                            <li>❖ يمنع سرقة أغراض الشرطة أو المسعفين، ويمنع الإجرام قبل الإعصار بـ 15 دقيقة.</li>
+                            <li>❖ في حال تهديد المواطن وانصياعه للأوامر, لا يحق لك قتله نهائياً.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="title">🛡️ المناطق الآمنة</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <div style="padding: 15px 30px 0;">
+                        <div style="background: rgba(168, 85, 247, 0.1); padding: 15px; border-radius: 6px; border-right: 4px solid var(--primary-purple); margin-bottom: 20px;">
+                            <p style="color: #d8b4fe; font-size: 0.95em; margin: 0; line-height: 1.6;">❖ يمنع القيام بأفعال خارقة أو غير منطقية لا يمكن تنفيذها في الحياة الواقعية داخل هذه المناطق.</p>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 10px;">
+                            <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                                <li>📍 مراكز الشرطة</li>
+                                <li>📍 المستشفيات</li>
+                                <li>📍 الشقق العامة</li>
+                                <li>📍 المطاعم والكافيهات</li>
+                                <li>📍 ورشات تصليح المركبات</li>
+                                <li>📍 مركز الوظائف</li>
+                                <li>📍 العقار</li>
+                                <li>📍 السجن</li>
+                            </ul>
+                            <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+                                <li>📍 المحكمة</li>
+                                <li>📍 الريسايكل (تجميع الموارد)</li>
+                                <li>📍 حجز المركبات</li>
+                                <li>📍 معارض السيارات</li>
+                                <li>📍 تأجير السيارات</li>
+                                <li>📍 كازينو</li>
+                                <li>📍 ايكيا</li>
+                                <li>📍 مصنع الدجاج</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(168, 85, 247, 0.2); font-size: 0.9em; color: #ffcc00; line-height: 1.6;">
+                            <p style="margin-bottom: 5px;">❖ يمنع الاحتماء والاستفزاز بالمناطق الآمنة.</p>
+                            <p style="margin: 0;">❖ يحق استكمال السيناريو في حال الاحتماء بمناطق آمنة (إلا مركز الشرطة).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-skull-crossbones"></i>
+                        <span class="title">🔫  قوانين العصابات</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <ul style="list-style: none; padding-right: 30px; margin: 0; line-height: 1.9; padding-top: 15px;">
+                        <li>❖ حد أفراد العصابة داخل السيرفر (20 عضو) وحد المجموعات/العائلات (10 أشخاص).</li>
+                        <li>❖ يمنع تحالف العصابات ضد الداخلية أو ضد مجموعة أخرى إلا في السرقات.</li>
+                        <li>❖ يمنع سرقة المواطن إلا بوجود عداوة مثبتة بـ (3 مواقف) وموثقة بمقاطع.</li>
+                        <li>❖ يمنع مقاومة السلاح الناري بسلاح أبيض، أو مقاومة السلاح الثقيل بسلاح خفيف.</li>
+                        <li>❖ يمنع تقليد ملابس أحد العصابات الأخرى.</li>
+                        <li>❖ يمنع افتعال فايت دون سبب، وقد تصل العقوبة إلى <span class="warning-text">الباند النهائي</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-handcuffs"></i>
+                        <span class="title">⛓️  القوانين السرقات</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <ul style="list-style: none; padding-right: 30px; margin: 0; line-height: 1.9; padding-top: 15px;">
+                        <li>❖ الحد الأعلى للرهائن هو (3) رهائن فقط لجميع السرقات ويمنع الزيادة.</li>
+                        <li>❖ مدة رهن الرهينة (20 دقيقة) إلا في حال بدأ السيناريو يلغى الوقت.</li>
+                        <li>❖ يمنع منعاً باتاً طلب أي مبلغ مادي على الرهينة؛ ويحق لك طلب واحد فقط لكل رهينة.</li>
+                        <li>❖ يمنع الاتفاق مع أي شخص ليصبح رهينة أو مشاركة الرهينة للخاطفين في النص.</li>
+                        <li>❖ يمنع اختطاف أو التعدي على أصحاب الوظائف الحكومية (عسكري، مسعف، محامي، ميكانيكي، سطحة).</li>
+                        <li>❖ يمنع خطف رهينة بغاية التوجه للسجن والتفاوض لإطلاق سراح سجين.</li>
+                        <li>❖ يمنع الاعتداء على مفاوض الشرطة أو مفاوض المجرمين في السيناريو.</li>
+                        <li>❖ يمنع إطلاق النار أو خطف العسكري في أي قضية مرورية.</li>
+                        <li>❖ يمنع منعاً باتاً تبادل إطلاق النار داخل "الهيومن لاب" و "المترو" تحت أي ظرف.</li>
+                        <li>❖ يجب التخطيط للسرقة ووضع خطة محكمة قبل البدء بها.</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fas fa-ban"></i>
+                        <span class="title">🚫  التحذيرات  والباندات</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <div style="padding: 15px 30px 0;">
+                        <div style="background: rgba(239, 68, 68, 0.05); padding: 20px; border-radius: 8px; border-right: 4px solid #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <p style="margin-bottom: 20px; font-weight: bold; color: #f87171; font-size: 1.05em;">⚠️ يتم تطبيق العقوبات بناءً على تكرار المخالفات ونظام النقاط التراكمي:</p>
+                            <table style="width: 100%; border-collapse: collapse; color: #fff; text-align: right; font-size: 0.95em;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
+                                        <th style="padding: 12px;">المستوى</th>
+                                        <th style="padding: 12px;">العقوبة (مدة الباند)</th>
+                                        <th style="padding: 12px;">النقاط</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 12px;">التحذير الأول (Warn)</td>
+                                        <td style="padding: 12px;">باند مؤقت (6 - 12 ساعة)</td>
+                                        <td style="padding: 12px;">-</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 12px;">التحذير الرسمي 1</td>
+                                        <td style="padding: 12px;">باند لمدة يوم كامل (1 Day)</td>
+                                        <td style="padding: 12px;">4 نقاط</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 12px;">التحذير الرسمي 2</td>
+                                        <td style="padding: 12px;">باند لمدة 3 أيام (3 Days)</td>
+                                        <td style="padding: 12px;">10 نقاط</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 12px;">التحذير الرسمي 3</td>
+                                        <td style="padding: 12px;">باند لمدة 7 أيام + إعادة تفعيل</td>
+                                        <td style="padding: 12px;">15 نقطة</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 12px; color: #ef4444; font-weight: bold;">الباند النهائي</td>
+                                        <td style="padding: 12px; color: #ef4444;">باند نهائي (أحقية طلب فرصة كل شهر)</td>
+                                        <td style="padding: 12px;">30 نقطة</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; color: #7f1d1d; font-weight: bold;">Banned Perm</td>
+                                        <td style="padding: 12px; color: #7f1d1d;">باند نهائي قطعي (لا يشمله العفو)</td>
+                                        <td style="padding: 12px;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.85em; color: #9ca3af; line-height: 1.7; padding: 0 5px;">
+                            <p>❖ ملاحظة: تراكم النقاط يؤدي تلقائياً لتصعيد العقوبة للمستوى التالي.</p>
+                            <p>❖ يحق للإدارة تخفيف أو تشديد العقوبة بناءً على جسامة الفعل أو السجل الانضباطي للاعب.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">
+                    <div class="accordion-header-main">
+                        <i class="fab fa-discord"></i>
+                        <span class="title">💬 قوانين الديسكورد</span>
+                    </div>
+                    <i class="fas fa-plus icon-plus"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="rules-category" style="padding: 15px 30px 0;">
+                        <h4 style="color: #5865F2; border-bottom: 1px solid rgba(88, 101, 242, 0.3); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1em;">🎮 ضوابط التواصل والسلوك</h4>
+                        <ul style="list-style: none; padding-right: 0; margin: 0; line-height: 1.8;">
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[1]</span> احترام الجميع وعدم السب أو إهانة أي شخص مهما كانت الظروف، ولو بطريقة غير مباشرة.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[2]</span> يمنع منعاً باتاً وضع الروابط الخارجية أو روابط تحتوي على دعوات لسيرفرات أخرى.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[3]</span> عدم التدخل في شؤون الآخرين أو شخصنة الحوارات والنقاشات.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[4]</span> يمنع الخوض في الأمور الدينية أو السياسية أو التطرق لها بأي شكل من الأشكال.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[5]</span> تعدد الحسابات غير مسموح؛ امتلاك أكثر من حساب في السيرفر يعرضك لـ <span class="warning-text">باند نهائي</span>.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[6]</span> يمنع انتحال الشخصيات الإدارية، ومن يخالف ذلك سيتعرض للمنفى (باند).</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[7]</span> يمنع السخرية والاستهزاء بالآخرين؛ العقوبة تبدأ من الميوت وتصل إلى التحذير الرسمي.</li>
+                            <li style="margin-bottom: 12px;"><span style="color: #5865F2; font-weight: bold;">[8]</span> يمنع الاستفسار في الشات العام؛ توجه لقسم "الدعم الفني" (المخالفة تعرضك للميوت).</li>
+                        </ul>
+                        <div style="margin-top: 20px; background: rgba(88, 101, 242, 0.1); padding: 12px; border-radius: 6px; border: 1px dashed #5865F2;">
+                            <p style="color: #8fb2ff; font-size: 0.85em; text-align: center; margin: 0; line-height: 1.6;">📍 "قوانين الديسكورد مكملة لقوانين السيرفر، وعدم معرفتك بها لا يعفيك من العقوبة."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <div id="creators-page" class="page">
+        <h2 class="section-title">نخبة صناع المحتوى</h2>
+        <div class="creators-grid">
+            <div class="creator-card"><h3>iiSA0</h3><a href="https://kick.com/iisa0" target="_blank" class="kick-badge">KICK LIVE</a></div>
+            <div class="creator-card"><h3>3fret_8</h3><a href="https://kick.com/3fret_8" target="_blank" class="kick-badge">KICK LIVE</a></div>
+            <div class="creator-card"><h3>SFA7</h3><a href="https://kick.com/sfa71s" target="_blank" class="kick-badge">KICK LIVE</a></div>
+            <div class="creator-card"><h3>RJ8F</h3><a href="https://kick.com/rj8f" target="_blank" class="kick-badge">KICK LIVE</a></div>
+        </div>
+    </div>
+
+    <div class="footer-signature">
+        By KBAB
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if(pageId === 'home-page') document.getElementById('link-home').classList.add('active');
+            if(pageId === 'rules-page') document.getElementById('link-rules').classList.add('active');
+            if(pageId === 'creators-page') document.getElementById('link-creators').classList.add('active');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function toggleAcc(btn) {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // إغلاق الكل لفتح واحد فقط
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+            
+            if(!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
